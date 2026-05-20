@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker AI Generator</title>
+    <link rel="stylesheet" href="generator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PrismJS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <span>DevOps AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Chat Assistant</a></li>
+                <li class="active"><a href="generator.html">Docker Generator</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Docker Configuration Generator</h1>
+                <p>Describe your project and let AI build your Dockerfile and run configuration.</p>
+            </header>
+
+            <div class="generator-workspace">
+                <!-- Input Panel -->
+                <div class="panel input-panel">
+                    <h2>Project Description</h2>
+                    <textarea id="project-description" placeholder="e.g., I have a FastAPI application that runs on port 8000 and needs uvicorn."></textarea>
+                    <button id="generate-btn" class="primary-btn">
+                        <span>Generate Config</span>
+                        <svg class="spinner hidden" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                        </svg>
+                    </button>
+                    <div id="error-message" class="error-msg hidden"></div>
+                </div>
+
+                <!-- Output Panel -->
+                <div class="panel output-panel">
+                    <h2>Generated Output</h2>
+                    <div id="loading-overlay" class="loading-overlay hidden">
+                        <div class="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <p>Analyzing tech stack & writing Dockerfile...</p>
+                    </div>
+                    
+                    <div id="results" class="results hidden">
+                        <div class="result-card">
+                            <div class="card-header">
+                                <h3>Project Meta</h3>
+                            </div>
+                            <div class="meta-info">
+                                <div class="meta-item">
+                                    <span class="label">Type:</span>
+                                    <span id="res-type" class="value badge"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="label">Base Image:</span>
+                                    <span id="res-image" class="value badge"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card code-card">
+                            <div class="card-header">
+                                <h3>Dockerfile</h3>
+                                <button class="copy-btn" data-target="res-dockerfile">Copy</button>
+                            </div>
+                            <pre><code id="res-dockerfile" class="language-dockerfile"></code></pre>
+                        </div>
+
+                        <div class="result-card code-card">
+                            <div class="card-header">
+                                <h3>Run Configuration (JSON)</h3>
+                                <button class="copy-btn" data-target="res-runconfig">Copy</button>
+                            </div>
+                            <pre><code id="res-runconfig" class="language-json"></code></pre>
+                        </div>
+                    </div>
+                    
+                    <div id="placeholder-state" class="placeholder-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <p>Ready to generate your configurations.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="generator.js"></script>
+</body>
+</html>

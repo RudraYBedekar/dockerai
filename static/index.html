@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Agent - Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Projects</h2>
+                <button id="new-project-btn" class="btn-primary">+ New</button>
+            </div>
+            <ul class="project-list" id="project-list">
+                <!-- Projects will be loaded here -->
+            </ul>
+            <div class="sidebar-footer">
+                <a href="generator.html">Go to Docker Generator →</a>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-container">
+            <header>
+                <div class="header-content">
+                    <h1 id="current-project-title">Select or Create a Project</h1>
+                    <p id="current-project-context">Context: None</p>
+                </div>
+                <div class="status-dot"></div>
+            </header>
+            <div class="chat-box" id="chat-box">
+                <div class="message ai-message">
+                    <div class="message-content">
+                        Welcome to DevOps AI! Please select a project from the left sidebar or create a new one to start chatting.
+                    </div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your query here..." autocomplete="off" disabled>
+                <button id="send-btn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for New Project -->
+    <div class="modal-overlay hidden" id="project-modal">
+        <div class="modal">
+            <h3>Create New Project</h3>
+            <div class="form-group">
+                <label>Project Name</label>
+                <input type="text" id="proj-name" placeholder="e.g. My React App">
+            </div>
+            <div class="form-group">
+                <label>Project Context</label>
+                <textarea id="proj-context" placeholder="e.g. This project is a frontend React app located in /usr/src/app..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancel-proj-btn">Cancel</button>
+                <button class="btn-primary" id="save-proj-btn">Save Project</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

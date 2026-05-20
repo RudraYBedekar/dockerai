@@ -1,0 +1,9 @@
+langgraph
+langchain-openai
+langchain
+kubernetes
+docker
+pydantic
+python-dotenv
+fastapi
+uvicorn
